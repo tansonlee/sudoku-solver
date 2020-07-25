@@ -1,17 +1,8 @@
 class Sudoku {
-	constructor() {
-		this.board = [
-			[5, 3, 0, 0, 7, 0, 0, 0, 0],
-			[6, 0, 0, 1, 9, 5, 0, 0, 0],
-			[0, 9, 8, 0, 0, 0, 0, 6, 0],
-			[8, 0, 0, 0, 6, 0, 0, 0, 3],
-			[4, 0, 0, 8, 0, 3, 0, 0, 1],
-			[7, 0, 0, 0, 2, 0, 0, 0, 6],
-			[0, 6, 0, 0, 0, 0, 2, 8, 0],
-			[0, 0, 0, 4, 1, 9, 0, 0, 5],
-			[0, 0, 0, 0, 8, 0, 0, 7, 9],
-		];
+	constructor(board) {
+		this.board = board.board;
 
+		// // finished board
 		// this.board = [
 		// 	[5, 3, 4, 6, 7, 8, 9, 1, 2],
 		// 	[6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -23,14 +14,28 @@ class Sudoku {
 		// 	[3, 4, 5, 2, 8, 6, 1, 7, 9],
 		// ];
 
+		this.started = [];
+
+		for (let y = 0; y < this.board.length; y++) {
+			for (let x = 0; x < this.board[0].length; x++) {
+				if (this.board[y][x] !== 0) {
+					this.started.push([x, y]);
+				}
+			}
+		}
+
 		this.cellWidth = floor(width / this.board[0].length);
 		this.cellHeight = floor(height / this.board.length);
 	}
 
 	show() {
+		strokeWeight(1);
+		textAlign(CENTER, CENTER);
+		textSize(32);
+		stroke(0);
 		for (let y = 0; y < this.board.length; y++) {
 			for (let x = 0; x < this.board[y].length; x++) {
-				fill(200);
+				noFill();
 				rect(
 					x * this.cellWidth,
 					y * this.cellHeight,
@@ -40,9 +45,13 @@ class Sudoku {
 
 				let value = this.board[y][x];
 
-				fill(0);
-				textAlign(CENTER, CENTER);
-				textSize(32);
+				fill(80);
+				this.started.forEach(a => {
+					if (a[0] === x && a[1] === y) {
+						fill(0);
+					}
+				});
+
 				if (value !== 0) {
 					text(
 						value,
@@ -52,8 +61,14 @@ class Sudoku {
 				}
 			}
 		}
+		strokeWeight(6);
+		line(this.cellWidth * 3, 0, this.cellWidth * 3, height);
+		line(this.cellWidth * 6, 0, this.cellWidth * 6, height);
+		line(0, this.cellHeight * 3, height, this.cellHeight * 3);
+		line(0, this.cellHeight * 6, width, this.cellHeight * 6);
 	}
 
+	// returns true or false if board is valid
 	isValid() {
 		// duplicates in rows
 		// goes through each row for duplicate
@@ -89,22 +104,29 @@ class Sudoku {
 			[7, 4],
 			[7, 7],
 		];
+
 		for (let centre of centres) {
 			let arr = [];
-			arr.push(this.board[(centre[0], centre[1])]); // MM
-			arr.push(this.board[(centre[0] - 1, centre[1] - 1)]); // TL
-			arr.push(this.board[(centre[0] - 1, centre[1])]); // TM
-			arr.push(this.board[(centre[0] - 1, centre[1] + 1)]); // TR
-			arr.push(this.board[(centre[0], centre[1] + 1)]); // RM
-			arr.push(this.board[(centre[0] + 1, centre[1] + 1)]); // RB
-			arr.push(this.board[(centre[0] + 1, centre[1])]); // BM
-			arr.push(this.board[(centre[0] - 1, centre[1] + 1)]); //BL
-			arr.push(this.board[(centre[0], centre[1] - 1)]); // LM
+			arr.push(this.board[centre[0]][centre[1]]); // MM
+			arr.push(this.board[centre[0] - 1][centre[1] - 1]); // TL
+			arr.push(this.board[centre[0] - 1][centre[1]]); // TM
+			arr.push(this.board[centre[0] - 1][centre[1] + 1]); // TR
+			arr.push(this.board[centre[0]][centre[1] + 1]); // RM
+			arr.push(this.board[centre[0] + 1][centre[1] + 1]); // RB
+			arr.push(this.board[centre[0] + 1][centre[1]]); // BM
+			arr.push(this.board[centre[0] + 1][centre[1] - 1]); //BL
+			arr.push(this.board[centre[0]][centre[1] - 1]); // LM
+
+			if (hasDuplicate(arr)) {
+				return false;
+			}
 		}
 
+		// if none of the checks above returns
 		return true;
 	}
 
+	// return true or false if board is solved
 	isSolved() {
 		for (let row of this.board) {
 			for (let value of row) {
@@ -120,8 +142,31 @@ class Sudoku {
 
 		return true;
 	}
+
+	async animateValidation() {
+		for (let y = 0; y < this.board.length; y++) {
+			for (let x = 0; x < this.board[0].length; x++) {
+				await sleep(20);
+				const value = this.board[y][x];
+				noStroke();
+
+				fill(0, 255, 0, 100);
+				rect(
+					x * this.cellWidth,
+					y * this.cellHeight,
+					this.cellWidth,
+					this.cellHeight
+				);
+			}
+		}
+
+		await sleep(1000);
+
+		this.show();
+	}
 }
 
+// helper function to determine if an array has duplicates
 const hasDuplicate = arr => {
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] != 0) {
@@ -132,4 +177,8 @@ const hasDuplicate = arr => {
 	}
 
 	return false;
+};
+
+const sleep = milliseconds => {
+	return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
