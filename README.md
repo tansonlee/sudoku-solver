@@ -15,6 +15,6 @@ how to use to solve your own sudoku:
 1. find your sudoku and create a json file with the following format:
    </br>
    <img src="gif/json-format.png" width="250px">
-2. add the file to the root directory with the name "sudoku.json"
+2. add the file to the sudokus directory with the name "sudoku.json"
 
 sudokus from: https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html

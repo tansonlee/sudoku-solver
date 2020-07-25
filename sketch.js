@@ -4,7 +4,7 @@ let stack = [];
 let board;
 
 function preload() {
-	board = loadJSON("/sudoku.json");
+	board = loadJSON("/sudokus/sudoku.json");
 }
 
 function setup() {
