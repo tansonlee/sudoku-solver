@@ -1,6 +1,6 @@
 # sudoku-solver
 
-Solves any sudoku using a backtracking algorithm which can run at 1,000,000 iterations per second
+###Solves any sudoku using a backtracking algorithm which can run at 1,000,000 iterations per second
 
 solving an easy sudoku @60 iterations per second:
 </br>
@@ -10,7 +10,7 @@ solving a very hard sudoku @18,000 iterations per second:
 </br>
 <img src="gif/sudoku-solver-hard.gif" width="300px">
 
-how to use to solve your own sudoku:
+###how to use to solve your own sudoku:
 
 1. find your sudoku and create a json file with the following format:
    </br>
