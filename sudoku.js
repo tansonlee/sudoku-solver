@@ -45,9 +45,12 @@ class Sudoku {
 
 				let value = this.board[y][x];
 
-				fill(80);
+				fill(120);
+				textSize(32);
+
 				this.started.forEach(a => {
 					if (a[0] === x && a[1] === y) {
+						textSize(36);
 						fill(0);
 					}
 				});
@@ -146,10 +149,8 @@ class Sudoku {
 	async animateValidation() {
 		for (let y = 0; y < this.board.length; y++) {
 			for (let x = 0; x < this.board[0].length; x++) {
-				await sleep(20);
-				const value = this.board[y][x];
+				await sleep(15);
 				noStroke();
-
 				fill(0, 255, 0, 100);
 				rect(
 					x * this.cellWidth,

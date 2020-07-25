@@ -5,7 +5,6 @@ let board;
 
 function preload() {
 	board = loadJSON("/sudoku.json");
-	console.log(board);
 }
 
 function setup() {
@@ -20,7 +19,7 @@ function draw() {
 		noLoop();
 		sudoku.animateValidation();
 	}
-	for (let i = 0; i < 500; i++) {
+	for (let i = 0; i < 100; i++) {
 		// solve
 		if (!sudoku.isSolved()) {
 			if (sudoku.isValid()) {
