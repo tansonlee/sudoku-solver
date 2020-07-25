@@ -16,5 +16,11 @@ solving a very hard sudoku @18,000 iterations per second:
    </br>
    <img src="gif/json-format.png" width="250px">
 2. add the file to the sudokus directory with the name "sudoku.json"
+3. wait for it to finish
+4. enjoy the solved sudoku
+
+</br>
+</br>
+</br>
 
 sudokus from: https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
