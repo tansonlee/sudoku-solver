@@ -4,25 +4,25 @@
 
 Made with JavaScript and visulaized with the p5.js library.
 
-solving an easy sudoku @60 iterations per second:
+Solving an easy sudoku @60 iterations per second:
 <br>
 <img src="gif/sudoku-solver-easy.gif" width="300px">
 
-solving a very hard sudoku @18,000 iterations per second:
+Solving a very hard sudoku @18,000 iterations per second:
 <br>
 <img src="gif/sudoku-solver-hard.gif" width="300px">
 
 ### how to use to solve your own sudoku:
 
-1. find your sudoku and create a json file with the following format:
+1. Find your sudoku and create a json file with the following format:
    <br>
    <img src="gif/json-format.png" width="250px">
-2. add the file to the sudokus directory with the name "sudoku.json"
-3. wait for it to finish
-4. enjoy the solved sudoku
+2. Add the file to the sudokus directory with the name "sudoku.json"
+3. Wait for it to finish
+4. Enjoy the solved sudoku
 
 <br>
 <br>
 <br>
 
-sudokus from: https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
+Sudokus from: https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
