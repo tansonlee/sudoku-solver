@@ -2,6 +2,8 @@
 
 ### Solves any sudoku using a backtracking algorithm which can run at 1,000,000 iterations per second
 
+Made with JavaScript and visulaized with the p5.js library.
+
 solving an easy sudoku @60 iterations per second:
 <br>
 <img src="gif/sudoku-solver-easy.gif" width="300px">
