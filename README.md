@@ -16,7 +16,7 @@ Solving a very hard sudoku @18,000 iterations per second:
 
 1. Find your sudoku and create a json file with the following format:
    <br>
-   <img src="gif/json-format.png" width="250px">
+   <img src="assets/json-format.png" width="250px">
 2. Add the file to the sudokus directory with the name "sudoku.json"
 3. Wait for it to finish
 4. Enjoy the solved sudoku
